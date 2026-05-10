@@ -21,9 +21,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
-          distribution: 'zulu'
-          java-version: '11'
-      - name: Gradle Test Build
+          distribution: temurin
+          cache: gradle
+          java-version: 25
+      - name: Gradle Build
         run: ./gradlew clean shadowJar
+      - name: Archive Artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: VoteParty-SNAPSHOT
+          path: build/libs/VoteParty-*.jar
