@@ -25,7 +25,7 @@ jobs:
         with:
           distribution: temurin
           cache: gradle
-          java-version: 25
+          java-version: 11
       - name: Gradle Build
         run: ./gradlew clean shadowJar
       - name: Archive Artifacts
