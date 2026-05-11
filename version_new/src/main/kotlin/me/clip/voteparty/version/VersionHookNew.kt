@@ -1,6 +1,6 @@
 package me.clip.voteparty.version
 
-import com.cryptomorin.xseries.particles.XParticleparticle.get()
+import com.cryptomorin.xseries.particles.XParticle
 import org.bukkit.Color
 import org.bukkit.Location
 import org.bukkit.Particle
