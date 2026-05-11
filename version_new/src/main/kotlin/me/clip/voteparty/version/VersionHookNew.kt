@@ -1,6 +1,6 @@
 package me.clip.voteparty.version
 
-import com.cryptomorin.xseries.particles.XParticle
+import com.cryptomorin.xseries.particles.XParticleparticle.get()
 import org.bukkit.Color
 import org.bukkit.Location
 import org.bukkit.Particle
@@ -20,18 +20,19 @@ class VersionHookNew : VersionHook
 			return
 		}
 
-		val particle = optionalParticle.get()
+		val xParticle = optionalParticle.get()
+		val particle = xParticle.get()
 		
-		if (particle.get().dataType == DustOptions::class.java)
+		if (particle.dataType == DustOptions::class.java)
 		{
-			return world.spawnParticle(particle.get(), location, 1, if (color == null) OPTION else DustOptions(color, 0.8F))
+			return world.spawnParticle(particle, location, 1, if (color == null) OPTION else DustOptions(color, 0.8F))
 		}
 		
 		when (particle)
 		{
 			in SINGLE     ->
 			{
-				world.spawnParticle(particle.get(), location, count)
+				world.spawnParticle(particle, location, count)
 			}
 			in SPELLS     ->
 			{
@@ -52,7 +53,7 @@ class VersionHookNew : VersionHook
 					b = color.blue / 255.0
 				}
 				
-				world.spawnParticle(particle.get(), location, count, r, g, b, 1)
+				world.spawnParticle(particle, location, count, r, g, b, 1)
 			}
 			XParticle.NOTE ->
 			{
@@ -65,11 +66,11 @@ class VersionHookNew : VersionHook
 					color.red / 24.0
 				}
 				
-				world.spawnParticle(particle.get(), location, count, note, offsetY, offsetZ, 1)
+				world.spawnParticle(particle, location, count, note, offsetY, offsetZ, 1)
 			}
 			else          ->
 			{
-				world.spawnParticle(particle.get(), location, count, offsetX, offsetY, offsetZ, 0.001)
+				world.spawnParticle(particle, location, count, offsetX, offsetY, offsetZ, 0.001)
 			}
 		}
 	}
